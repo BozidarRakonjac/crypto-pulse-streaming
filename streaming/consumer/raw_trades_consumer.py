@@ -69,8 +69,8 @@ pg_conn.autocommit = False   # we control commits explicitly, same reasoning as 
 pg_cursor = pg_conn.cursor()
 
 INSERT_SQL = """
-    INSERT INTO raw_trades (symbol, price, quantity, trade_time_ms, is_buyer_maker)
-    VALUES (%s, %s, %s, %s, %s)
+    INSERT INTO raw_trades (agg_trade_id, symbol, price, quantity, trade_time_ms, is_buyer_maker)
+    VALUES (%s, %s, %s, %s, %s, %s)
 """
 
 
@@ -100,6 +100,7 @@ for message in consumer:
         pg_cursor.execute(
             INSERT_SQL,
             (
+                trade["agg_trade_id"],
                 trade["symbol"],
                 trade["price"],
                 trade["quantity"],
@@ -121,7 +122,7 @@ for message in consumer:
 
         print(
             f"Inserted -> symbol={trade['symbol']} price={trade['price']} "
-            f"offset={message.offset}"
+            f"agg_id={trade['agg_trade_id']} offset={message.offset}"
         )
 
     except Exception as e:

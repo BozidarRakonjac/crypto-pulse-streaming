@@ -69,6 +69,7 @@ def on_message(ws, message):
     key = trade["s"]              # e.g. "BTCUSDT"
 
     value = {
+        "agg_trade_id": trade["a"],
         "symbol": trade["s"],
         "price": trade["p"],
         "quantity": trade["q"],

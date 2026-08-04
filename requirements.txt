@@ -3,3 +3,8 @@ kafka-python
 psycopg2-binary
 python-dotenv
 pandas
+dagster
+dagster-webserver
+matplotlib
+jupyter
+sqlalchemy

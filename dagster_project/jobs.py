@@ -8,4 +8,4 @@ Gold together, in dependency order.
 
 from dagster import define_asset_job
 
-silver_job = define_asset_job(name="silver_job", selection=["cleaned_trades"])
+pipeline_job = define_asset_job(name="pipeline_job", selection=["cleaned_trades", "ohlcv_candles"])
